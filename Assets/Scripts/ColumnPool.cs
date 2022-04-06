@@ -20,6 +20,7 @@ public class ColumnPool : MonoBehaviour
     private GameObject[] _columns;
     private float _timeSinceLastSpawned;
     private int _currentColumn;
+    
     private void Awake()
     {
         _columns = new GameObject[_poolSize];
@@ -28,6 +29,7 @@ public class ColumnPool : MonoBehaviour
             _columns[i] = Instantiate(_prefab, _objectPoolPosition, Quaternion.identity);
         }
     }
+    
     private void Update()
     {
         _timeSinceLastSpawned += Time.deltaTime;

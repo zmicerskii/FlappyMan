@@ -19,8 +19,8 @@ public class GameController : MonoBehaviour
     
     private void Awake()
     {
-        GlobalEvents.BirdDied += OnBirdDied;
-        GlobalEvents.BirdScored += OnBirdScored;
+        BirdController.BirdDied += OnBirdDied;
+        Column.BirdScored += OnBirdScored;
         
         if (Instance == null)
         {
@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
     private void Update()
     {
         if (IsGameOver && Input.GetMouseButtonDown(0))
@@ -38,6 +39,7 @@ public class GameController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
+    
     private void OnBirdScored()
     {
         if (IsGameOver)
@@ -48,6 +50,7 @@ public class GameController : MonoBehaviour
         _score++;
         _TextScore[0].text = "SCORE: " + _score;
     }
+    
     private void OnBirdDied()
     {
         _gameOverText.SetActive(true);
@@ -59,7 +62,7 @@ public class GameController : MonoBehaviour
 
     private void OnDestroy()
     {
-        GlobalEvents.BirdDied -= OnBirdDied;
-        GlobalEvents.BirdScored -= OnBirdScored;
+        BirdController.BirdDied -= OnBirdDied;
+        Column.BirdScored -= OnBirdScored;
     }
 }

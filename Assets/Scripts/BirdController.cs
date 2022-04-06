@@ -1,7 +1,10 @@
 using UnityEngine;
+using System;
 
 public class BirdController : MonoBehaviour
 {
+    public static event Action BirdDied;
+    
     [SerializeField] 
     private float _upForce = 200f;
     
@@ -17,6 +20,7 @@ public class BirdController : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
     }
+    
     private void Update()
     {
         if (_isDead) return;
@@ -28,12 +32,13 @@ public class BirdController : MonoBehaviour
             _animator.SetTrigger(Flap);
         }
     }
+    
     private void OnCollisionEnter2D()
     {
         _rigidbody2D.velocity = Vector2.zero;
         _isDead = true;
         _animator.SetTrigger(Die);
 
-        GlobalEvents.BirdDied?.Invoke();
+        BirdDied?.Invoke();
     }
 }
