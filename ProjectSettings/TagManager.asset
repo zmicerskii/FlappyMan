@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bird
+  - Column
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Column
   - Water
   - UI
   - 

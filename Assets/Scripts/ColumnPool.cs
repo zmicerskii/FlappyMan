@@ -9,13 +9,13 @@ public class ColumnPool : MonoBehaviour
     [SerializeField] 
     private float _spawnRate = 4f;
     [SerializeField] 
-    private float _offsetMin = -1f;
+    private float _offsetYMin = -1f;
     [SerializeField] 
-    private float _offsetMax = 3.5f;
-    [SerializeField] 
-    private Vector2 _objectPoolPosition = new(-15f, -25f);
+    private float _offsetYMax = 3.5f;
     [SerializeField] 
     private float _spawnXPosition = 12f;
+     
+    private readonly Vector2 _objectPoolPosition = new(-15f, -25f);
     
     private GameObject[] _columns;
     private float _timeSinceLastSpawned;
@@ -36,7 +36,7 @@ public class ColumnPool : MonoBehaviour
         if (!GameController.Instance.IsGameOver && _timeSinceLastSpawned >= _spawnRate)
         {
             _timeSinceLastSpawned = 0;
-            var spawnYPosition = Random.Range(_offsetMin, _offsetMax);
+            var spawnYPosition = Random.Range(_offsetYMin, _offsetYMax);
             _columns[_currentColumn].transform.position = new Vector2(_spawnXPosition, spawnYPosition);
             _currentColumn++;
             
