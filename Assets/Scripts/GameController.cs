@@ -53,7 +53,6 @@ public class GameController : MonoBehaviour
     private static GameController instance;
     private int _score;
     
-    
     private void Awake()
     {
         BirdController.BirdDied += BirdDiedHandler;
