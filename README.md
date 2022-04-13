@@ -1,4 +1,4 @@
-# MyFlappyBird
+# FlappyMan
 
 <h3 align="center">This is my first project on github, don't be strict🇺</h3>
 <h1 align="center"><img src="https://user-images.githubusercontent.com/89748954/163071343-60a4c1b7-5c09-4eea-a454-791304e3b0d7.png"></a>
