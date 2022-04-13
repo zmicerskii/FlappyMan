@@ -7,7 +7,26 @@ public class GameController : MonoBehaviour
 {
     public static event Action ChangeGameSpeed;
     
-    public static GameController Instance;
+    public static GameController Instance
+    {
+        get
+        {
+            if ( instance == null )
+            {
+                instance = FindObjectOfType<GameController> ();
+                if ( instance == null )
+                {
+                    var obj = new GameObject
+                    {
+                        name = nameof(GameController)
+                    };
+                    instance = obj.AddComponent<GameController>();
+                }
+            }
+            return instance;
+        }
+    }
+
     public float ScrollSpeed = -1.5f;
     public bool IsGameOver;
     
@@ -31,20 +50,22 @@ public class GameController : MonoBehaviour
     [SerializeField, Min(0)] 
     private float _rateOfChangeSpeed;
     
+    private static GameController instance;
     private int _score;
+    
     
     private void Awake()
     {
         BirdController.BirdDied += BirdDiedHandler;
         Column.BirdScored += BirdScoredHandler;
         
-        if (Instance == null)
+        if ( instance == null )
         {
-            Instance = this;
+            instance = this;
         }
-        else if (Instance != this)
+        else
         {
-            Destroy(gameObject);
+            Destroy (gameObject);
         }
     }
     
